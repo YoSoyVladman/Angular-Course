@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="store">
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+
+</head>
+<body ng-controller="StoreController as store">
+<div ng-repeat="product in store.products">
+  <h1> {{ product.name }} </h1>
+  <h2> {{ product.price }} </h2>
+
+  <section ng-controller="PanelController as panel">
+    <ul class="nav nav-pills">
+      <li ng-class="{active:panel.isSelected(1)}"><a href ng-click="panel.selectedTab(1)">Description</a></li>
+      <li ng-class="{active:panel.isSelected(2)}"><a href ng-click="panel.selectedTab(2)">Specifications</a></li>
+      <li ng-class="{active:panel.isSelected(3)}"><a href ng-click="panel.selectedTab(3)">Reviews</a></li>
+    </ul>
+
+    <div class="panel" ng-show="panel.isSelected(1)">
+      <h4>Description</h4>
+      <p>
+        {{product.description}}
+      </p>
+    </div>
+    <div class="panel" ng-show="panel.isSelected(2)">
+      <h4>Description</h4>
+      <blockquote>NotYet</blockquote>
+    </div>
+    <div class="panel" ng-show="panel.isSelected(3)">
+      <h4>Description</h4>
+      <blockquote>NotYet</blockquote>
+    </div>
+
+  </section>
+  <button ng-show="store.product.canPurchase">Add to Cart</button>
+</div>
+
+<h4>Reviews</h4>
+<form name="reviewForm">
+  <blockquote>
+    <b>Stars: {{review.stars}}</b>
+    {{review.body}}
+    <cite>by:{{review.author}}</cite>
+  </blockquote>
+  <select ng-model="review.stars">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <textareang-model="review.body"></textarea>
+  <label>by:</label>
+  <input ng-model="review.author" type="email"/>
+  <input type="submit" value="Submit"  />
+</form>
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
